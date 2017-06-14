@@ -11,14 +11,8 @@ namespace WebApiTest.Ioc
         public static IUnityContainer GetContainer()
         {
             var unityContainer = new UnityContainer();
-            unityContainer.RegisterType<ICustomerService>(new InjectionFactory(container =>
-            {
-                var requestUrl = HttpContext.Current.Request.Url;
-                if(requestUrl.ToString().ToLower().Contains("audit"))
-                    return new CustomerServiceFake();
-
-                return new CustomerService();
-            }));
+            unityContainer.RegisterType<ICustomerSearchService, CustomerSearchService>();
+            unityContainer.RegisterType<ICustomerService>(new InjectionFactory(container => new CustomerService()));
             return unityContainer;
         }
     }

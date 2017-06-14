@@ -120,9 +120,11 @@
     <Compile Include="Ioc\InitalizeIoc.cs" />
     <Compile Include="Ioc\UnityResolver.cs" />
     <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Models\CustomerSearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CustomerSearchService.cs" />
     <Compile Include="Service\CustomerService.cs" />
-    <Compile Include="Service\CustomerServiceFake.cs" />
+    <Compile Include="Service\Interfaces\ICustomerSearchService.cs" />
     <Compile Include="Service\Interfaces\ICustomerService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

@@ -1,23 +1,28 @@
 ﻿using System.Web.Http;
+using WebApiTest.Models;
 using WebApiTest.Service.Interfaces;
 
 namespace WebApiTest.Controllers
 {
     public class CustomerController : ApiController
     {
-        private readonly ICustomerService _customerService;
+        private readonly ICustomerSearchService _customerSearchService;
 
-        public CustomerController(ICustomerService customerService)
+        public CustomerController(ICustomerSearchService customerSearchService)
         {
-            _customerService = customerService;
+            _customerSearchService = customerSearchService;
         }
-
+       
         [Route("api/Customers")]
-        [Route("api/Customers-Audit")]
+        //[Route("api/Customers-Audit")]
         [HttpGet]
-        public IHttpActionResult GetAllCustomers()
+        public IHttpActionResult GetAllCustomers(string name = null, string address = null)
         {
-            var customers = _customerService.GetCustomers();
+            var customers = _customerSearchService.Search(new CustomerSearchModel
+            {
+                Name = name,
+                Address = address
+            });
 
             return Ok(customers);
         }
